@@ -1,0 +1,66 @@
+@charset "UTF-8";
+/**********************************/
+/*            pagination          */
+/**********************************/
+.section-pageBtn {
+	margin: 0 auto 4.8rem;
+}
+
+.pageBtn_box {
+	display: flex;
+	justify-content: center;
+}
+
+.pagination {
+	display: flex;
+	align-items: center;
+	gap: 1.2rem;
+}
+
+.pagination_btn {
+	width: 4.8rem;
+	height: 4.8rem;
+	border: 1px solid #aca59d;
+	background: none;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.pagination_btn:hover, .pagination_btn.pagination_btn--current {
+	color: #fff;
+    background-color: #555;
+}
+
+.pagination_btn:hover .pagination_btn-icon {
+	stroke: #fff;
+}
+
+.pagination_btn-icon {
+	width: 2.4rem;
+	height: 2.4rem;
+	stroke: #aca59d;
+}
+
+.page-link:link, .page-link:visited {
+	text-decoration: none;
+	color: #343a40;
+	font-size: 1.8rem;
+	/* 為了要在裡面畫一個圓 */
+	width: 3.6rem;
+	height: 3.6rem;
+	border-radius: 50%;
+	/* 基本上使用Flex box 只是為了
+  將元素內部的文本水平和垂直居中 */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.page-link:hover, .page-link:active, .page-link.page-link--current {
+	background-color: #aca59d;
+	color: #fff;
+}
+
+.dots {
+	color: #868e96;
+}

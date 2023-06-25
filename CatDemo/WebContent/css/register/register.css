@@ -1,0 +1,266 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+}
+*:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.4rem rgba(134, 88, 45, 0.4);
+}
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  color: #555;
+  height: 95vh;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(193, 153, 111, 0.4),
+      rgba(177, 129, 75, 0.4)
+    ),
+    url(../../img/login-background.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.grid {
+  display: grid;
+}
+
+.flex {
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+}
+
+.background {
+  height: 45rem;
+  width: 45rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ball {
+  height: 20rem;
+  width: 20rem;
+  border-radius: 50%;
+  position: absolute;
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem);
+  }
+  80% {
+    transform: translateX(1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem);
+  }
+  80% {
+    transform: translateX(-1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.ball:first-child {
+  background: linear-gradient(rgb(34, 139, 230), rgb(25, 113, 194));
+  left: -35%;
+  top: -43%;
+  animation: moveInLeft 1s ease-out;
+}
+
+.ball:last-child {
+  background: linear-gradient(rgb(255, 212, 59), rgb(250, 176, 5));
+  right: -35%;
+  bottom: -40%;
+  animation: moveInRight 1s ease-out;
+}
+
+form {
+  width: 55rem;
+  height: 85vh;
+  box-shadow: 1rem 1rem 3rem rgba(0, 0, 0);
+  background-color: rgba(74, 48, 23, 0.1);
+  border: 0.2rem solid rgb(214, 51, 108);
+  position: absolute;
+  transform: translate(-50%, -50%);
+  padding: 3rem 3.5rem;
+  top: 50%;
+  left: 50%;
+  border-radius: 1rem;
+  /* 使表單能向下滑動 */
+  overflow-y: scroll;
+}
+
+/* 隱藏拉條 */
+form::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+form * {
+  font-family: "Roboto", sans-serif;
+  /* color: #fff; */
+  letter-spacing: 0.1rem;
+  /* 輸入框的顏色 */
+  outline: none;
+  border: none;
+}
+
+form h3 {
+  color: #fff;
+  font-size: 4.4rem;
+  font-weight: 500;
+  line-height: 4rem;
+  text-align: center;
+}
+
+label {
+  color: #fff;
+  display: block;
+  font-size: 2rem;
+  font-weight: 500;
+  margin-top: 4rem;
+  margin-bottom: 0.8rem;
+}
+
+input,
+select {
+  display: block;
+  height: 5rem;
+  width: 100%;
+  font-size: 1.8rem;
+  font-weight: 500;
+  border-radius: 1rem;
+  padding: 0 1.6rem;
+}
+
+::placeholder {
+  color: #adb5bd;
+}
+
+.socail {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 2.4rem;
+  margin-top: 2.4rem;
+  align-items: center;
+  justify-items: center;
+}
+
+.socail-icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.btn-login {
+  width: 100%;
+  margin-top: 3rem;
+  border-radius: 1rem;
+  font-size: 1.8rem;
+  background-color: #f5ebe0;
+  color: #444;
+  padding: 1.5rem 0;
+  font-weight: 900;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-login:hover,
+.btn-login:active {
+  background-color: #444;
+  color: #f5ebe0;
+}
+
+.btn-icon,
+.btn-icon:link,
+.btn-icon:visited {
+  padding: 1.6rem 2.4rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: 500;
+  border: none;
+  transition: all 0.3s;
+}
+
+.btn--full:link,
+.btn--full:visited {
+  background-color: #b1814b;
+  color: #eee;
+}
+
+.btn--full:hover,
+.btn--full:active {
+  background-color: #96561e;
+}
+
+.btn--cat:link,
+.btn--cat:visited {
+  background-color: #4a3017;
+  color: #f4e8dc;
+}
+
+.btn--cat:hover,
+.btn--cat:active {
+  background-color: #f5ebe0;
+  color: #444;
+  box-shadow: 0 0 0 4px #7b7670;
+}
+
+.check-date{
+	margin-top:1rem;
+	color:rgb(255,0,43);
+	position:absolute;
+}
+
+/* message */
+.message_h1{
+	font-size: 3rem;
+	position:absolute;
+	margin-top:1rem;
+	color:rgb(255,0,43);
+	right: 39%;
+    top: 9%;
+}
+
+
+/* 檢查碼 */
+.check{
+	display:flex;
+	margin-top:2rem;
+	gap:2rem;
+}
+
+.check_icon-refresh{
+	cursor: pointer;
+	width:2rem;
+	height: 2rem;
+}
+
+.check_img-box{
+	margin-left: 2rem;
+}
+
+.check_img{
+	cursor: pointer;
+}

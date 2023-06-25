@@ -1,0 +1,39 @@
+/**********************************/
+/*              top               */
+/**********************************/
+.shop__top-box {
+  margin-right: 3rem;
+  position: fixed;
+  right: 0;
+  bottom: 42%;
+  transform: translateX(20%);
+  opacity: 1;
+
+  transition: all 0.5s ease-in;
+  z-index : 10;
+}
+
+.shop__top-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 2.4rem;
+  text-decoration: none;
+  color: #7b7670;
+  transition: all 0.3s ease-in;
+}
+
+.shop__top-btn:hover {
+  color: #000;
+}
+
+.shop-open .shop__top-box {
+  transform: translateX(0%);
+  right: 33%;
+  opacity: 0;
+}
+
+.btn__top {
+  width: 2.4rem;
+  height: 2.4rem;
+}

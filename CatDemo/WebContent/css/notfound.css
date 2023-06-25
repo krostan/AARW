@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+.section-notfound{
+	margin:4.8rem ;
+}
+
+.card-section {
+	width: 100%;
+	margin: 2rem auto;
+	font-size: 2rem;
+	line-height: 1.2;
+}
+
+.card-section p{
+	margin: 1rem 0;
+}
+
+.card-section ul{
+	margin-left: 2.4rem; 
+	margin-bottom: 2rem;
+}    
+
+.card-section li{
+	padding: 1rem 0;
+}

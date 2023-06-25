@@ -1,0 +1,247 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+}
+
+*:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.5rem rgba(134, 88, 45, 0.5);
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  /* 配合js 呈現滾動 */
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  line-height: 1;
+  color: #555;
+  overflow-x: hidden;
+}
+
+main {
+  min-height: 80vh;
+}
+
+.section {
+  margin: 9.6rem auto;
+}
+ol,
+ul {
+  padding-left: 0;
+}
+/**********************************/
+/*             header             */
+/**********************************/
+.header {
+  background-color: #f5ebe0;
+  height: 9.6rem;
+  padding: 0 8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-bottom:2px solid #6e6964;
+  position: relative;
+}
+
+.logo {
+  height: 6rem;
+}
+
+/**********************/
+/* fas fa-search icon */
+/**********************/
+.search_icon {
+  font-size: 3rem;
+  cursor: pointer;
+}
+
+.search_icon:hover{
+	color:#b1814b;
+}
+
+.search_icon.fa-times {
+  font-size: 4rem;
+}
+
+.header .search-bar-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  padding: 1.5rem 2rem;
+  background: #37383d;
+  border-top: 0.1rem solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  z-index: 1001;
+  clip-path: polygon(0 0, 100% 0, 0 0);
+  
+  transition: all 0.2s linear;
+}
+
+.header .search-bar-container.active {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.header .search-bar-container #search-bar {
+  width: 100%;
+  padding: 1rem;
+  text-transform: none;
+  color: #333;
+  font-size: 1.6rem;
+  border-radius: 0.5rem;
+}
+
+.header .search-bar-container button {
+  border: 0;
+  background: 0;
+  cursor: pointer;
+  font-size: 3rem;
+  margin-left: 1.5rem;
+}
+
+.header .search-bar-container button:hover {
+  color: #b1814b;
+}
+/**********************************/
+/*           NAVIGATION           */
+/**********************************/
+
+.nav__links {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  gap: 6.4rem;
+}
+
+.nav__link:link,
+.nav__link:visited {
+  text-decoration: none;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #333;
+  display: inline-block;
+  transition: all 0.5s;
+}
+
+.nav__link:hover,
+.nav__link:active {
+  color: #774005;
+}
+
+.nav__link.nav-cta:link,
+.nav__link.nav-cta:visited {
+  padding: 1.2rem 2.4rem;
+  background-color: #b1814b;
+  border-radius: 5rem;
+  color: #eee;
+}
+.nav__link.nav-cta:hover,
+.nav__link.nav-cta:active {
+  background-color: #96561e;
+}
+/**********************************/
+/*         Sticky navigation      */
+/**********************************/
+.sticky .header {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 9.6rem;
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 999;
+  box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0.03);
+}
+
+/**********************************/
+/*             MOBILE             */
+/**********************************/
+.btn__mobile-nav {
+  border: none;
+  background: none;
+  cursor: pointer;
+
+  display: none;
+}
+
+.icon__mobile-nav {
+  width: 4.8rem;
+  height: 4.8rem;
+  color: #333;
+}
+
+.icon__mobile-nav[name="close-outline"] {
+  display: none;
+}
+
+/**********************************/
+/* BELOW 944 (Yablets)*/
+/**********************************/
+@media (max-width: 59em) {
+  /* MOBILE NAVIGATION */
+  .btn__mobile-nav {
+    display: block;
+    z-index: 9999;
+  }
+
+  .nav {
+    background-color: rgba(255, 255, 255, 0.6);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    transform: translateX(100%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease-in;
+
+    /* HIDDEN NAVIGATION */
+    /* display: none; */
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    z-index: 1;
+  }
+
+  .nav-open .nav {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    transform: translateX(0);
+    z-index: 100;
+  }
+
+  .nav-open .icon__mobile-nav[name="close-outline"] {
+    display: block;
+  }
+
+  .nav-open .icon__mobile-nav[name="menu-outline"] {
+    display: none;
+  }
+
+  .nav__links {
+    flex-direction: column;
+    gap: 4.8rem;
+  }
+
+  .nav__link:link,
+  .nav__link:visited {
+    font-size: 3rem;
+  }
+}

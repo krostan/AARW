@@ -1,0 +1,36 @@
+.section-table{
+	 padding: 4.8rem;
+}
+
+table {
+	width: 140rem;
+	font-size: 2.4rem;
+	border-collapse: collapse;
+}
+
+th, td {
+	padding: 1.6rem 0;
+	text-align: left;
+}
+
+th{
+	padding-left: 2rem;
+	padding-right: 2rem;
+}
+
+thead tr {
+	background-color: #b1814b;
+	color: #eee;
+}
+
+thead th {
+	border: 1px solid #333;
+}
+/* 奇數 */
+tbody tr:nth-child(odd) {
+	background-color: #f8f9fa;
+}
+/* 偶數 */
+tbody tr:nth-child(even) {
+	background-color: #e9ecef;
+}

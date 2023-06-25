@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="../css/signup/signUpStyle.css" />
+
+    <title>Sign up</title>
+  </head>
+
+  <body>
+    <div class="background">
+      <div class="ball"></div>
+      <div class="ball"></div>
+    </div>
+
+    <form action="#"
+          method="POST"
+          class="fs-2"
+          >
+      <h3 class="heading-primary">Update Member</h3>
+
+      <div ></div>
+
+      <input type="hidden"  />
+
+      <label for="username">Username</label>
+      <input
+        type="text"
+        class="username"
+
+        id="username"
+        placeholder="Enter username"
+        required
+      />
+
+
+      <label for="password">Password</label>
+      <input
+        type="password"
+  
+        class="password"
+        id="password"
+        placeholder="Enter password"
+        required
+      />
+
+      <label for="name">姓名</label>
+      <input
+
+        type="text"
+        class="name"
+        placeholder="貓貓貓"
+        id="name"
+        required
+      />
+
+      <label for="phone">Phone</label>
+      <input
+        type="tel"
+
+        class="phone"
+        id="phone"
+        placeholder="0995275871"
+        pattern="[0-9]{4}[0-9]{3}[0-9]{3}"
+        required
+      />
+
+      <label for="birthday">出生年月日</label>
+      <input
+        type="date"
+
+        class="birthday"
+        id="birthday"
+        min="1900-01-01"
+        max="2019-01-01"
+        required
+      />
+
+      <label for="email">Email</label>
+      <input
+        class="email"
+
+        type="email"
+        placeholder="cat@exaple.com"
+        id="email"
+        pattern="^[A-Za-z0-9-_\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$"
+        required
+      />
+
+      <button class="btn-login">儲存</button>
+
+      <div class="socail grid">
+        <div>
+          <a href="../index.html" class="btn-icon btn--full flex">
+            <ion-icon class="socail-icon" name="home-outline"></ion-icon>
+            <p>首頁</p>
+          </a>
+        </div>
+
+        <div>
+          <a href="login.html" class="btn-icon btn--cat flex">
+            <ion-icon class="socail-icon" name="paw-outline"></ion-icon>
+            <p>返回</p>
+          </a>
+        </div>
+      </div>
+    </form>
+
+    <script
+            type="module"
+            src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+            nomodule
+            src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>

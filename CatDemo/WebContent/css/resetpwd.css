@@ -1,0 +1,50 @@
+/**************/
+/*resetpwd.jsp*/
+/**************/
+.input_box{
+	display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    border-radius: 1rem;
+    padding-right: 1rem;
+    background-color: #fff;
+}
+
+.icon__box {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.input_box input{
+	border-right: 1px solid #eee;
+    border-radius: 1rem 0 0 1rem;
+}
+
+.input-icon{
+	height: 3rem;
+    width: 3rem;
+}
+
+.item-open .input-icon {
+  height: 3rem;
+  width: 3rem;
+}
+
+.input-icon[name="eye-outline"] {
+  display: none;
+}
+
+.item-open .input-icon[name="eye-outline"] {
+  display: block;
+}
+
+.item-open .input-icon[name="eye-off-outline"] {
+  display: none;
+}
+
+/* message */
+.socail.reset_pwd{
+  margin-top: 6.4rem;
+
+}

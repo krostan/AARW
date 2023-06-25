@@ -1,0 +1,432 @@
+/**********************************/
+/* BELOW 1344 (Smaller desktops)*/
+/**********************************/
+@media (max-width: 84em) {
+  .cat {
+    max-width: 120rem;
+  }
+
+  .container {
+    padding: 0 4.8rem;
+  }
+
+  .testimonial {
+    gap: 10rem;
+  }
+}
+
+/**********************************/
+/* BELOW 1200 (Landscape Yablets)*/
+/**********************************/
+@media (max-width: 75em) {
+  html {
+    font-size: 56.25%;
+  }
+
+  .header {
+    padding: 0 4.8rem;
+  }
+  .nav__links {
+    gap: 3.2rem;
+  }
+
+  .cat {
+    padding: 0 4.8rem;
+    column-gap: 8rem;
+  }
+
+  .testimonial {
+    gap: 5rem;
+  }
+
+  .testimonial__photo-box {
+    padding-left: 8rem;
+  }
+
+  .testimonial__photo {
+    height: 28rem;
+  }
+
+  .slider {
+    margin-top: -9.6rem;
+  }
+
+  .slider__btn {
+    width: 8rem;
+    height: 8rem;
+  }
+
+  .slider__btn--left {
+    top: 45%;
+  }
+
+  .slider__btn--right {
+    top: 45%;
+  }
+
+  .slide__icon {
+    font-size: 4.4rem;
+  }
+
+  .dots {
+    bottom: 15%;
+  }
+
+  .pricing__list {
+    font-size: 2.4rem;
+  }
+
+  .accordion__hidden-lists {
+    gap: 1.4rem;
+  }
+}
+
+/**********************************/
+/* BELOW 944 (Yablets)*/
+/**********************************/
+@media (max-width: 59em) {
+  /* 8px / 16px =0.5 */
+  html {
+    font-size: 50%;
+  }
+  .container {
+    padding: 0 3.6rem;
+  }
+
+  .logo {
+    height: 6rem;
+  }
+
+  .header {
+    padding: 0 3.2rem;
+  }
+
+  .cat {
+    grid-template-columns: 1fr;
+    gap: 6.4rem;
+    justify-items: center;
+  }
+
+  .cat-text-box {
+    text-align: center;
+  }
+
+  .cat-img-box {
+    width: 60%;
+  }
+
+  .heading-secondary {
+    margin-bottom: 6.4rem;
+  }
+
+  .testimonial__text-cat {
+    font-size: 2.4rem;
+  }
+
+  .testimonial__text-content {
+    font-size: 2rem;
+  }
+
+  .testimonial__photo {
+    height: 25rem;
+  }
+
+  .testimonial {
+    padding: 3.2rem 4.8rem;
+  }
+
+  .dots {
+    bottom: 25%;
+  }
+
+  .section-slider {
+    padding: 4.8rem 0;
+  }
+
+  .slider__btn {
+    width: 6.4rem;
+    height: 6.4rem;
+    top: 43%;
+  }
+
+  .slider__btn--right {
+    right: 2%;
+  }
+
+  .slider__btn--left {
+    left: 2%;
+  }
+
+  .cta {
+    grid-template-columns: 2fr 3fr;
+  }
+
+  .cta__form {
+    grid-template-columns: 1fr;
+  }
+
+  .btn--form {
+    margin-top: 1.2rem;
+  }
+
+  /* MOBILE NAVIGATION */
+  .btn__mobile-nav {
+    display: block;
+    z-index: 9999;
+  }
+
+  .nav {
+    background-color: rgba(255, 255, 255, 0.6);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    transform: translateX(100%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease-in;
+
+    /* HIDDEN NAVIGATION */
+    /* display: none; */
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+  .nav-open .nav {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    transform: translateX(0);
+    z-index: 100;
+  }
+
+  .nav-open .icon__mobile-nav[name="close-outline"] {
+    display: block;
+  }
+  .nav-open .icon__mobile-nav[name="menu-outline"] {
+    display: none;
+  }
+
+  .nav__links {
+    flex-direction: column;
+    gap: 4.8rem;
+  }
+
+  .nav__link:link,
+  .nav__link:visited {
+    font-size: 3rem;
+  }
+
+  .accordion__number,
+  .accordion__text {
+    line-height: 1.4;
+  }
+
+  .accordion__hidden-lists {
+    gap: 1.6rem;
+  }
+  .content-description {
+    font-size: 2.4rem;
+  }
+}
+
+/**********************************/
+/* BELOW 704 (Yablets)*/
+/**********************************/
+@media (max-width: 44em) {
+  html {
+    font-size: 44%;
+  }
+
+  .testimonial {
+    gap: 1.6rem;
+  }
+
+  .testimonial__photo-box {
+    padding-left: 1.6rem;
+  }
+
+  .testimonial__photo {
+    transform: none;
+    height: 25rem;
+  }
+
+  .slide__icon {
+    font-size: 3.6rem;
+  }
+
+  .pricing__eat {
+    width: 30rem;
+  }
+
+  .grid--4-cols {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    column-gap: 0;
+    align-items: center;
+  }
+  .accordion__number,
+  .accordion__text {
+    font-size: 4.4rem;
+  }
+  .accordion__hidden-lists {
+    font-size: 3rem;
+    line-height: 1.4;
+    gap: 1.8rem;
+  }
+  .accordion__hidden-text {
+    font-size: 3rem;
+  }
+  .cta {
+    grid-template-columns: 1fr;
+  }
+
+  .cta__text-box {
+    padding: 3.2rem;
+  }
+
+  .cta__img-box {
+    height: 40rem;
+  }
+
+  .cta__text {
+    font-size: 2.4rem;
+  }
+
+  .cta__form-label {
+    font-size: 2.4rem;
+  }
+
+  .cta__form-input,
+  .cta__form-select {
+    font-size: 2.4rem;
+  }
+}
+
+/**********************************/
+/* BELOW 544 (Phones)*/
+/**********************************/
+@media (max-width: 34em) {
+  .container {
+    padding: 0 2.4rem;
+  }
+
+  .grid {
+    row-gap: 8rem;
+  }
+
+  .grid--2-cols,
+  .grid--3-cols,
+  .grid--4-cols {
+    grid-template-columns: 1fr;
+  }
+
+  .content-img-box:nth-child(4) {
+    grid-row: 3;
+  }
+
+  .cat-img-box {
+    width: 80%;
+  }
+
+  .content-img-box {
+    justify-self: center;
+  }
+
+  .testimonial {
+    flex-direction: column;
+    padding: 2.4rem;
+  }
+
+  .dots {
+    bottom: 4%;
+  }
+
+  .grid--footer {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    align-items: center;
+  }
+
+  .address-col {
+    grid-column: 1/2;
+    grid-row: 2/3;
+  }
+
+  .nav-col {
+    grid-column: 2/3;
+    grid-row: 2/3;
+  }
+
+  .copyright {
+    grid-column: 1/-1;
+    grid-row: 3;
+    align-self: center;
+  }
+
+  .plan-details {
+    font-size: 2.4rem;
+    margin-bottom: -4.8rem;
+    line-height: 1.5;
+  }
+
+  .feature__title {
+    font-size: 3.6rem;
+  }
+
+  .feature__text {
+    font-size: 3rem;
+    line-height: 1.3;
+  }
+
+  .subheading {
+    font-size: 2.4rem;
+  }
+
+  .accordion__number,
+  .accordion__text {
+    font-size: 3rem;
+  }
+  .slider {
+    margin-top: -4.8rem;
+  }
+
+  .slide {
+    top: 2%;
+  }
+  .testimonial__text-cat {
+    font-size: 3rem;
+  }
+
+  .testimonial__text-content {
+    font-size: 2.4rem;
+  }
+
+  .testimonial__photo-box {
+    padding-left: 0;
+  }
+
+  .content-description {
+    font-size: 3rem;
+    line-height: 1.8;
+  }
+
+  .testimonial__text {
+    padding: 0 1.2rem;
+  }
+}
+
+/**********************************/
+/*            BELOW 432           */
+/**********************************/
+@media (max-width: 27em) {
+  .grid--footer {
+  	column-gap: 3.6rem;
+  }
+}

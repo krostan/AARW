@@ -1,0 +1,284 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+}
+*:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(134, 88, 45, 0.4);
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  color: #555;
+  height: 95vh;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(193, 153, 111, 0.4),
+      rgba(177, 129, 75, 0.4)
+    ),
+    url(../../img/login-background.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.grid {
+  display: grid;
+}
+
+.flex {
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+}
+
+.background {
+  height: 45rem;
+  width: 45rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ball {
+  height: 20rem;
+  width: 20rem;
+  border-radius: 50%;
+  position: absolute;
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem);
+  }
+  80% {
+    transform: translateX(1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem);
+  }
+  80% {
+    transform: translateX(-1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.ball:first-child {
+  background: linear-gradient(rgb(34, 139, 230), rgb(25, 113, 194));
+  left: -18%;
+  top: -14%;
+  animation: moveInLeft 1s ease-out;
+}
+
+.ball:last-child {
+  background: linear-gradient(rgb(255, 212, 59), rgb(250, 176, 5));
+  right: -20%;
+  bottom: -10%;
+  animation: moveInRight 1s ease-out;
+}
+
+form {
+  height: 60rem;
+  width: 40rem;
+  border: 0.2rem solid #495057;
+  box-shadow: 1rem 1rem 3rem rgba(0, 0, 0);
+  background-color: rgba(74, 48, 23, 0.1);
+  border: 0.2rem solid rgb(214, 51, 108);
+  position: absolute;
+  transform: translate(-50%, -50%);
+  padding: 5rem 3.5rem;
+  top: 50%;
+  left: 50%;
+  border-radius: 1rem;
+  backdrop-filter: blur(10px);
+}
+
+form * {
+  font-family: "Roboto", sans-serif;
+  /* color: #fff; */
+  letter-spacing: 0.1rem;
+  /* 輸入框的顏色 */
+  outline: none;
+  border: none;
+}
+
+form h3 {
+  color: #fff;
+  font-size: 4.4rem;
+  font-weight: 500;
+  line-height: 4rem;
+  text-align: center;
+}
+
+label {
+  color: #fff;
+  display: block;
+  font-size: 2rem;
+  font-weight: 500;
+  margin-top: 2.4rem;
+  margin-bottom: 1.2rem;
+}
+
+input {
+  display: block;
+  height: 5rem;
+  width: 100%;
+  font-size: 1.8rem;
+  font-weight: 500;
+  border-radius: 1rem;
+  padding-left: 1.6rem;
+}
+
+::placeholder {
+  color: #adb5bd;
+}
+
+.socail {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 2.4rem;
+  margin-top: 2.4rem;
+  align-items: center;
+  justify-items: center;
+}
+
+.socail-icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.btn-login {
+  width: 100%;
+  margin-top: 5rem;
+  border-radius: 1rem;
+  font-size: 1.8rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 1.5rem 0;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.btn-icon,
+.btn-icon:link,
+.btn-icon:visited {
+  padding: 1.6rem 2.4rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: 500;
+  border: none;
+  transition: all 0.3s;
+}
+
+.btn--full:link,
+.btn--full:visited {
+  background-color: #b1814b;
+  color: #eee;
+}
+
+.btn--full:hover,
+.btn--full:active {
+  background-color: #96561e;
+}
+
+.btn--cat:link,
+.btn--cat:visited {
+  background-color: #4a3017;
+  color: #f4e8dc;
+}
+
+.btn--cat:hover,
+.btn--cat:active {
+  background-color: #f5ebe0;
+  color: #444;
+  box-shadow: inset 0 0 0 3px #7b7670;
+}
+
+
+
+/* 檢查碼 */
+.check{
+	display:flex;
+	margin-top:2rem;
+	gap:2rem;
+}
+
+.check_icon-refresh{
+	cursor: pointer;
+	width:2rem;
+	height: 2rem;
+}
+
+.check_img-box{
+	margin-left: 1rem;
+}
+
+.check_img{
+	cursor: pointer;
+}
+
+/* message */
+.message_h1{
+	position:absolute;
+	margin-top:1rem;
+	color:rgb(255,0,43);
+	left: 10%;
+}
+
+/* 忘記密碼 */
+.pwd_link,
+.pwd_link:link,
+.pwd_link:visited{
+	position : absolute;
+	text-decoration : none;
+	left : 65%;
+	bottom : 29%;
+	font-size : 1.6rem;
+	color : rgb(26,115,232);
+	padding: 0.2rem 0.4rem;
+	transition: all 0.3s;
+}
+
+.pwd_link:hover,
+.pwd_link:active{
+	background-color:rgba(153, 153, 153, 0.604);
+	
+}
+
+/**************/
+/* signin.jsp */
+/**************/
+.btn-signin{
+	border-radius: 2rem;
+	font-size: 1.8rem;
+	background-color: rgba(255, 255, 255, 0.8);
+	font-weight: 900;
+    cursor: pointer;
+    padding: 1.6rem 2.4rem;
+}
+
+.get_pwd{
+	margin: 4rem 2rem;
+    text-align: center;
+}
+
+

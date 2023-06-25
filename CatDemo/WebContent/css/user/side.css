@@ -1,0 +1,137 @@
+/**********************************/
+/* SIDE NAVIGATION*/
+/**********************************/
+.content {
+  display: flex;
+}
+
+.sidebar {
+  text-align: center;
+  background-color: #6e6964;
+  flex: 0 0 15%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right:2px solid #f5ebe0;
+  z-index: 0;
+}
+
+.side-nav {
+  font-size: 1.4rem;
+  list-style: none;
+  margin-top: 3.5rem;
+}
+
+.side-nav__item {
+  position: relative;
+}
+.side-nav__item:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+.side-nav__item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 3px;
+  background-color: #b1814b;
+  transform: scaleY(0);
+  transition: transform 0.2s, width 0.4s cubic-bezier(1, 0, 0, 1) 0.2s,
+    background-color 0.1s;
+}
+
+.side-nav__item:hover::before,
+.side-nav__item--active::before {
+  transform: scaleY(1);
+  width: 100%;
+}
+.side-nav__item:active::before {
+  background-color: #b1814b;
+}
+
+.side-nav__link:link,
+.side-nav__link:visited {
+  color: #faf9f9;
+  text-decoration: none;
+  text-transform: uppercase;
+  display: block;
+  padding: 1.5rem 3rem;
+  position: relative;
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+}
+
+.side-nav__icon {
+  width: 1.75rem;
+  height: 1.75rem;
+  margin-right: 2rem;
+  color: #faf9f9;
+}
+
+.nav__none {
+  pointer-events: none;
+}
+
+/**********************************/
+/* BELOW 1072 */
+/**********************************/
+
+@media (max-width: 67em) {
+  .content {
+    flex-direction: column;
+  }
+
+  .side-nav {
+  	font-size: 2rem;
+  	font-weight: 600;
+    text-align: center;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .side-nav .user {
+    font-size: 2.4rem;
+    grid-column: 1 / -1;
+    border-bottom: 1px solid #faf9f9;
+  }
+  
+  .user-icon {
+    display: none;
+  }
+  
+  .side-nav__item:not(:last-child) {
+    margin: 0;
+  }
+  
+  .side-nav__link:link,
+  .side-nav__link:visited {
+    justify-content: center;
+    flex-direction: column;
+    padding: 1.5rem;
+  }
+
+  .side-nav__icon {
+    margin-right: 0;
+    margin-bottom: 0.8rem;
+  }
+}
+
+
+/**********************************/
+/*            BELOW 432           */
+/**********************************/
+@media (max-width: 27em) {
+  .side-nav {
+  	font-size: 1.6rem;
+  }
+	
+}
+
+/**********************************/
+/* end*/
+/**********************************/
