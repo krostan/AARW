@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import com.database.FileOutput;
+import com.entities.Member;
+import com.managers.MemberManager;
 import com.managers.PetManager;
 
 /**
@@ -46,11 +48,16 @@ public class AddPet extends HttpServlet {
 
 		// 如果是從/CatDemo/role/admin.jsp 過來的, adminUrl會有值
 		String adminUrl = (String) request.getAttribute("adminUrl");
-		int userId;
+		int userId = 0;
 
 		if (adminUrl != null) {
 			String userNo = request.getParameter("userid");
-			userId = Integer.parseInt(userNo);
+			
+			try {
+				userId = Integer.parseInt(userNo);
+			} catch (NumberFormatException e) {
+				System.out.println("不是數字");
+			}
 		} else {
 			userId = (int) session.getAttribute("userId");
 		}
@@ -67,24 +74,31 @@ public class AddPet extends HttpServlet {
 
 		Part filePart = request.getPart("image");
 
-		// 使用者資料夾
-		String mk = File.separator + userId;
-		// 設定儲存檔案的資料夾路徑
-		String savePath = getServletContext().getRealPath("/images") + mk;
-		// 儲存檔案
-		FileOutput.saveFile(filePart, savePath);
-		// 得到新檔名
-		String fileName = FileOutput.generateFileName(filePart);
+		Member isMember = MemberManager.getInstance().findById(userId);
+		boolean isSuccess = false;
+		String errorMessage = "";
+		if (isMember != null) {
+			// 使用者資料夾
+			String mk = File.separator + userId;
+			// 設定儲存檔案的資料夾路徑
+			String savePath = getServletContext().getRealPath("/images") + mk;
+			// 儲存檔案
+			FileOutput.saveFile(filePart, savePath);
+			// 得到新檔名
+			String fileName = FileOutput.generateFileName(filePart);
 
-		// 要儲存到資料庫的路徑 顯示時 可以直接使用的路徑
-		String image = "images" + mk + File.separator + fileName;
+			// 要儲存到資料庫的路徑 顯示時 可以直接使用的路徑
+			String image = "images" + mk + File.separator + fileName;
 
-		boolean isSuccess = PetManager.getInstance().save(petName, breed, gender, coatColor, age, location, species,
-				size, quest, image, userId);
+			isSuccess = PetManager.getInstance().save(petName, breed, gender, coatColor, age, location, species, size,
+					quest, image, userId);
+		} else {
+			errorMessage = "該會員編號不存在";
+		}
 
 		if (adminUrl != null) {
-			String alertMessage = isSuccess ? "寵物新增成功" : "寵物新增失敗";
-			out.println("<script>alert('" + alertMessage + "'); window.location='role/admin.jsp';</script>");
+			String alertMessage = isSuccess ? "寵物新增成功" : "寵物新增失敗, " + errorMessage;
+			out.println("<script>alert('" + alertMessage + "'); window.location='role/aCatAndDog.jsp';</script>");
 			out.flush();
 		} else {
 			response.sendRedirect("member");

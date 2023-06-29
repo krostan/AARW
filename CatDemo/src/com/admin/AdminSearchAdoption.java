@@ -43,7 +43,14 @@ public class AdminSearchAdoption extends HttpServlet {
 		PrintWriter out = response.getWriter();
 
 		String adoptionStr = request.getParameter("updateAdoptionNo");
-		int adoptionId = Integer.parseInt(adoptionStr);
+
+		int adoptionId = 0;
+		try {
+			adoptionId = Integer.parseInt(adoptionStr);
+		} catch (NumberFormatException e) {
+			System.out.println("不是數字");
+		}
+
 		session.setAttribute("adoptionId", adoptionId);
 
 		Adoption adoption = AdoptionManager.getInstance().findById(adoptionId);

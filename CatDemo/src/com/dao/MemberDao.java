@@ -13,6 +13,7 @@ import com.entities.Member;
 import com.entities.Pet;
 import com.managers.MemberManager;
 import com.managers.PetManager;
+import com.database.BCryptStringUtil;
 import com.database.JDBCDriver;
 
 public class MemberDao {
@@ -25,16 +26,16 @@ public class MemberDao {
 
 	// 驗證帳號密碼
 	public int authenticate(String username, String password) {
-
+		
 		String query = "SELECT user_id FROM member WHERE username = ? and password = ?";
 
 		try (PreparedStatement pstm = conn.prepareStatement(query);) {
 
 			pstm.setString(1, username);
 			pstm.setString(2, password);
-			
+
 			ResultSet rs = pstm.executeQuery();
-			
+
 			while (rs.next()) {
 				return rs.getInt("user_id");
 			}
@@ -49,17 +50,23 @@ public class MemberDao {
 	// 新增會員
 	public boolean save(String userName, String password, String name, String phone, Date birthday, String email,
 			String gender, String address) {
-
 		Member member = null;
+		Member memberPhone = null;
+		Member memberEmail = null;
 		boolean isSuccess = false;
+		
 		// 轉成 能儲存到資料庫的Date型態
 		java.sql.Date sqlBirthday = new java.sql.Date(birthday.getTime());
+		
+		// 密碼加密
+		String hashpw = BCryptStringUtil.encodePassword(password);
+		
 		String query = "INSERT INTO member (username, password, name, phone, birthday, email, gender, address) VALUES (?,?,?,?,?,?,?,?)";
 
 		try (PreparedStatement pstm = conn.prepareStatement(query);) {
 
 			pstm.setString(1, userName);
-			pstm.setString(2, password);
+			pstm.setString(2, hashpw);
 			pstm.setString(3, name);
 			pstm.setString(4, phone);
 			pstm.setDate(5, sqlBirthday);
@@ -69,8 +76,10 @@ public class MemberDao {
 
 			// 透過使用者ID 判斷是否已在資料庫中
 			member = MemberManager.getInstance().findByName(userName);
+			memberPhone = MemberManager.getInstance().findByPhone(phone);
+			memberEmail = MemberManager.getInstance().findByEmail(email);
 
-			if (member == null) {
+			if (member == null && memberPhone == null && memberEmail == null) {
 				isSuccess = pstm.executeUpdate() > 0;
 			}
 
@@ -260,17 +269,41 @@ public class MemberDao {
 		return isSuccess;
 	}
 
-	// 重設密碼
+	// 更改密碼
 	public boolean updatePwd(int userId, String oldPwd, String newPwd) {
 		boolean isSuccess = false;
-
+		// 密碼加密
+		String hashpw = BCryptStringUtil.encodePassword(newPwd);
+		
 		String query = "UPDATE member SET password = ? WHERE user_id = ? and password = ?";
 
 		try (PreparedStatement pstm = conn.prepareStatement(query);) {
 
-			pstm.setString(1, newPwd);
+			pstm.setString(1, hashpw);
 			pstm.setInt(2, userId);
 			pstm.setString(3, oldPwd);
+
+			isSuccess = pstm.executeUpdate() > 0;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return isSuccess;
+	}
+
+	// 重設密碼
+	public boolean updatePwd(int userId, String newPwd) {
+		boolean isSuccess = false;
+		// 密碼加密
+		String hashpw = BCryptStringUtil.encodePassword(newPwd);
+
+		String query = "UPDATE member SET password = ? WHERE user_id = ?";
+
+		try (PreparedStatement pstm = conn.prepareStatement(query);) {
+
+			pstm.setString(1, hashpw);
+			pstm.setInt(2, userId);
 
 			isSuccess = pstm.executeUpdate() > 0;
 

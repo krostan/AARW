@@ -39,40 +39,46 @@ public class SearchPet extends HttpServlet {
 		HttpSession session = request.getSession();
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
-
+		Map<String, String> map = new HashMap<>();
 		String adminUrl = (String) request.getAttribute("adminUrl");
 		// 判斷是否從管理介面來的
 		if (adminUrl != null) {
-			
-			String updatePetNo = request.getParameter("updatePetNo");
-			int petNo = Integer.parseInt(updatePetNo);
-			session.setAttribute("petId", petNo);
-			
-			Pet pet = PetManager.getInstance().findById(petNo);
-			
-			int userId = pet.getMember().getUserId();
-			session.setAttribute("userId", userId);
-			
-			Map<String, String> map = new HashMap<>();
 
-			map.put("petName", pet.getPetName());
-			map.put("breed", pet.getBreed());
-			map.put("petGender", pet.getGender());
-			map.put("coatColor", pet.getCoatColor());
-			map.put("age", pet.getAge());
-			map.put("location", pet.getLocation());
-			map.put("species", pet.getSpecies());
-			map.put("size", pet.getSize());
-			map.put("quest", pet.getQuest());
-			map.put("photos", pet.getPhotos());
-			
+			String updatePetNo = request.getParameter("updatePetNo");
+
+			int petNo = 0;
+
+			try {
+				petNo = Integer.parseInt(updatePetNo);
+			} catch (NumberFormatException e) {
+				System.out.println("不是數字");
+			}
+
+			session.setAttribute("petId", petNo);
+
+			Pet pet = PetManager.getInstance().findById(petNo);
+			if (pet != null) {
+				int userId = pet.getMember().getUserId();
+				session.setAttribute("userId", userId);
+
+				map.put("petName", pet.getPetName());
+				map.put("breed", pet.getBreed());
+				map.put("petGender", pet.getGender());
+				map.put("coatColor", pet.getCoatColor());
+				map.put("age", pet.getAge());
+				map.put("location", pet.getLocation());
+				map.put("species", pet.getSpecies());
+				map.put("size", pet.getSize());
+				map.put("quest", pet.getQuest());
+				map.put("photos", pet.getPhotos());
+			}
 			Gson gson = new Gson();
 			String json = gson.toJson(map);
 
 			response.setContentType("application/json");
 			response.setCharacterEncoding("utf-8");
 			response.getWriter().write(json);
-			
+
 		} else {
 
 			String tmpId = request.getParameter("petid");

@@ -2,7 +2,6 @@ package com.member;
 
 import java.io.IOException;
 
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,9 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
+import com.database.BCryptStringUtil;
+import com.entities.Member;
 import com.managers.MemberManager;
-
 
 /**
  * Servlet implementation class Login
@@ -39,6 +38,7 @@ public class Login extends HttpServlet {
 		HttpSession session = request.getSession();
 		request.setCharacterEncoding("utf-8");
 
+		// 取得表單資料
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 
@@ -47,33 +47,37 @@ public class Login extends HttpServlet {
 		String input = request.getParameter("insrand");
 
 		response.setContentType("text/html;charset=utf-8");
-		
-		// 得到使用者編號
-		int userId = MemberManager.getInstance().authenticate(username, password);
-
-		// 得到使用者的權限
-//		Permiss permiss = null;
-//		permiss = PermissManager.getInstance().findByUserId(userId);
 
 		if (!rnd.equals(input)) {
 			session.setAttribute("message", "驗證錯誤");
 			response.sendRedirect("members/login.jsp");
 		} else {
-			// -1 為 找不到資料
-			if (userId < 0) {
-				session.setAttribute("message", "帳號密碼輸入錯誤");
-				response.sendRedirect("members/login.jsp");
-			} else {
 
-//				if (permiss != null && (Objects.equals(permiss.getRole(), "系統管理者"))) {
-//					response.sendRedirect("role/admin.jsp");
-//				} else {
-					String userName = MemberManager.getInstance().findById(userId).getUsername();
+			int userId = 0;
+			boolean isTrue = false;
+
+			// 透過username 取得使用者資料
+			Member member = MemberManager.getInstance().findByName(username);
+
+			if (member != null) {
+				// 將輸入的密碼 與資料庫的密碼 比對
+				isTrue = BCryptStringUtil.verifyPassword(password, member.getPassword());
+
+				if (isTrue) {
+					// 取得編號
+					userId = member.getUserId();
 					session.setAttribute("userId", userId);
-					session.setAttribute("username", userName);
+					session.setAttribute("username", username);
 					response.sendRedirect("member");
-//				}
+				} else {
+					session.setAttribute("message", "帳號或密碼輸入錯誤");
+					response.sendRedirect("members/login.jsp");
+				}
+			} else {
+				session.setAttribute("message", "帳號或密碼輸入錯誤");
+				response.sendRedirect("members/login.jsp");
 			}
+
 		}
 
 	}

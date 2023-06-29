@@ -82,15 +82,37 @@
 		<url-pattern>/logout</url-pattern> 
 	</servlet-mapping>
 	
-	<!-- reset pwd -->
+	<!-- ChangePwd -->
 	<servlet>
-		<servlet-name>GetPwd</servlet-name>
-		<servlet-class>com.member.GetPwd</servlet-class> 
+		<servlet-name>ChangePwd</servlet-name>
+		<servlet-class>com.member.ChangePwd</servlet-class> 
 	</servlet>
 		  
 	<servlet-mapping>
-		<servlet-name>GetPwd</servlet-name>
-		<url-pattern>/resetpassword</url-pattern> 
+		<servlet-name>ChangePwd</servlet-name>
+		<url-pattern>/change-pwd</url-pattern> 
+	</servlet-mapping>
+	
+	<!-- ResetPwd -->
+	<servlet>
+		<servlet-name>ResetPwd</servlet-name>
+		<servlet-class>com.member.ResetPwd</servlet-class> 
+	</servlet>
+		  
+	<servlet-mapping>
+		<servlet-name>ResetPwd</servlet-name>
+		<url-pattern>/reset-pwd</url-pattern> 
+	</servlet-mapping>
+	
+	<!-- UpdatePwd -->
+	<servlet>
+		<servlet-name>UpdatePwd</servlet-name>
+		<servlet-class>com.member.UpdatePwd</servlet-class> 
+	</servlet>
+		  
+	<servlet-mapping>
+		<servlet-name>UpdatePwd</servlet-name>
+		<url-pattern>/update-pwd</url-pattern> 
 	</servlet-mapping>
 	
 	<!-- CheckName -->

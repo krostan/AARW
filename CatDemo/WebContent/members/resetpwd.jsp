@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,53 +23,41 @@
 	</div>
 
 	<!-- resetpwd -->
-	<form action="../resetpassword" method="POST" id="pwd_form">
+	<form action="../update-pwd" method="POST" id="pwd_form">
 		<h3 class="heading-primary">重設密碼</h3>
-			<label for="oldpassword">原本密碼</label>
+
+		<label for="password1">新密碼(8~12)</label>
 		<div class="input_box">
-			<input type="password" class="oldpassword" id="oldpassword" name="oldpassword" placeholder="Enter password" /> 
-			
+			<input type="password" class="password" id="password1"
+				name="password1" placeholder="Enter password"
+				pattern="^[0-9a-z]{8,12}$" required />
+
 			<div class="icon__box">
-	          	<ion-icon name="eye-outline" class="input-icon"></ion-icon>
-	          	<ion-icon name="eye-off-outline" class="input-icon"></ion-icon>
-	        </div>
+				<ion-icon name="eye-outline" class="input-icon"></ion-icon>
+				<ion-icon name="eye-off-outline" class="input-icon"></ion-icon>
+			</div>
 		</div>
-		
-		<label for="password">新密碼(8~12)</label>
+
+		<label for="password2">再輸入新密碼</label>
 		<div class="input_box">
-        	<input type="password" class="password" id="password1" name="password1" placeholder="Enter password" />
-        	
-        	<div class="icon__box">
-	          	<ion-icon name="eye-outline" class="input-icon"></ion-icon>
-	          	<ion-icon name="eye-off-outline" class="input-icon"></ion-icon>
-	        </div>
+			<input type="password" class="password" id="password2"
+				name="password2" placeholder="Enter password"
+				pattern="^[0-9a-z]{8,12}$" required />
+
+			<div class="icon__box">
+				<ion-icon name="eye-outline" class="input-icon"></ion-icon>
+				<ion-icon name="eye-off-outline" class="input-icon"></ion-icon>
+			</div>
 		</div>
-		
-		<label for="password">再輸入新密碼</label>
-		<div class="input_box">
-        	<input type="password" class="password" id="password2" name="password2" placeholder="Enter password" />
-        	
-        	<div class="icon__box">
-	          	<ion-icon name="eye-outline" class="input-icon"></ion-icon>
-	          	<ion-icon name="eye-off-outline" class="input-icon"></ion-icon>
-	        </div>
-		</div>
-		<%
-		String message = (String)session.getAttribute("message");
-		if(message!=null){
-			out.print("<h1 class='message_h1'>" + message + "</h1>");	
-		}
-		
-		session.removeAttribute("message");
-		%>
+
 		<div class="socail reset_pwd grid">
 			<div>
 				<a href="../member" class="btn-icon btn--full">返回</a>
 			</div>
 			<button class="btn-signin">送出</button>
 		</div>
-		
-		
+
+
 	</form>
 
 	<script type="module"
@@ -77,5 +65,7 @@
 	<script nomodule
 		src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 	<script defer src="../js/resetpwd.js"></script>
+	<!-- 驗證使用者資料 -->
+    <script defer src="../js/check.js"></script>
 </body>
 </html>

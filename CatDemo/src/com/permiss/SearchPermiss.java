@@ -35,23 +35,32 @@ public class SearchPermiss extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		
+
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 
 		String permissUserIdStr = request.getParameter("updatePermissUserNo");
-		int permissUserId = Integer.parseInt(permissUserIdStr);
+
+		int permissUserId = 0;
+
+		try {
+			permissUserId = Integer.parseInt(permissUserIdStr);
+		} catch (NumberFormatException e) {
+			System.out.println("不是數字");
+		}
+
 		session.setAttribute("userId", permissUserId);
 
 		Permiss permiss = PermissManager.getInstance().findByUserId(permissUserId);
 		String role = "";
-		
-		if (permiss == null) {
-			out.print(false);
-		}else {
+
+		if (permiss != null && permissUserId != 1) {
 			role = permiss.getRole();
 			out.println(role);
+
+		} else {
+			out.print(false);
 		}
 
 	}

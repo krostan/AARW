@@ -16,7 +16,7 @@ public class JDBCDriver {
 		
 		loadDriver();
 		 	
-		String url ="jdbc:mysql://localhost:XXXX/pet_directory";
+		String url ="jdbc:mysql://localhost:8888/pet_directory";
 		String user ="";
 		String password="";
 

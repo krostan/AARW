@@ -39,7 +39,13 @@ public class DoPermiss extends HttpServlet {
 		PrintWriter out = response.getWriter();
 
 		String userIdStr = request.getParameter("userid");
-		int userId = Integer.parseInt(userIdStr);
+		int userId = 0;
+		String errorMessage = "";
+		try {
+			userId = Integer.parseInt(userIdStr);
+		} catch (NumberFormatException e) {
+			System.out.println("不是數字");
+		}
 
 		String role = request.getParameter("role");
 
@@ -49,8 +55,8 @@ public class DoPermiss extends HttpServlet {
 		if (member != null) {
 			isSuccess = PermissManager.getInstance().save(userId, role);
 		}
-		String alertMessage = isSuccess ? "權限新增成功" : "權限新增失敗";
-		out.println("<script>alert('" + alertMessage + "'); window.location='role/admin.jsp';</script>");
+		String alertMessage = isSuccess ? "權限新增成功" : "權限新增失敗" + errorMessage;
+		out.println("<script>alert('" + alertMessage + "'); window.location='role/aCatAndDog.jsp';</script>");
 		out.flush();
 	}
 

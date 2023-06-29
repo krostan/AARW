@@ -130,12 +130,14 @@
 	                </li>
 	
 	                <li class="menu-li">
-	                  <button class="sort-item" type="button">貓貓貓貓</button>
+	                  <button class="sort-item" type="button">亂數</button>
 	                </li>
 	
+	                <!--  
 	                <li class="menu-li">
-	                  <button class="sort-item" type="button">不知道</button>
-	                </li>
+	                  <button class="sort-item" type="button">亂數</button>
+	                </li> 
+	                -->
 	              </ul>
 	            </div>
 	

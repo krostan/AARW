@@ -19,8 +19,8 @@ public class AdminFilter implements Filter {
 		
 		String referer = httpRequest.getHeader("Referer");
 		
-		if(referer != null && referer.endsWith("/CatDemo/role/admin.jsp")) {
-			httpRequest.setAttribute("adminUrl", "/CatDemo/role/admin.jsp");
+		if(referer != null && referer.endsWith("/CatDemo/role/aCatAndDog.jsp")) {
+			httpRequest.setAttribute("adminUrl", "/CatDemo/role/aCatAndDog.jsp");
 		}
 		
 		chain.doFilter(request, response);

@@ -52,19 +52,30 @@ public class DoPublish extends HttpServlet {
 		// 判斷是否從管理介面來的
 		if (adminUrl != null) {
 			String user = request.getParameter("userid");
-			int userId = Integer.parseInt(user);
+			int userId = 0;
 
 			String pet = request.getParameter("petid");
-			int petId = Integer.parseInt(pet);
-			Pet petobj = PetManager.getInstance().findById(petId);
-			boolean isSuccess = false;
-
-			if (petobj.getMember().getUserId() == userId) {
-				isSuccess = PublishManager.getInstance().save(date, petId, userId);
-			}
+			int petId = 0;
 			
-			String alertMessage = isSuccess ? "刊登成功" : "刊登失敗";
-			out.println("<script>alert('" + alertMessage + "'); window.location='role/admin.jsp';</script>");
+			boolean isSuccess = false;
+			String errorMessage = "";
+			try {
+				userId = Integer.parseInt(user);
+				petId = Integer.parseInt(pet);
+
+				Pet petobj = PetManager.getInstance().findById(petId);
+				
+
+				if (petobj.getMember().getUserId() == userId) {
+					isSuccess = PublishManager.getInstance().save(date, petId, userId);
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("不是數字");
+				errorMessage = "輸入的不是數字";
+			}
+
+			String alertMessage = isSuccess ? "刊登成功" : "刊登失敗 " + errorMessage;
+			out.println("<script>alert('" + alertMessage + "'); window.location='role/aCatAndDog.jsp';</script>");
 			out.flush();
 		} else {
 

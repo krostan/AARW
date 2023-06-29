@@ -40,14 +40,14 @@ public class DoUpdatePermiss extends HttpServlet {
 		PrintWriter out = response.getWriter();
 
 		int userId = (int) session.getAttribute("userId");
-		session.removeAttribute("userId");
+//		session.removeAttribute("userId");
 		
 		String role = request.getParameter("role");
 
 		boolean isSuccess = PermissManager.getInstance().updatePermiss(userId, role);
 
 		String alertMessage = isSuccess ? "權限更新成功" : "權限更新失敗";
-		out.println("<script>alert('" + alertMessage + "'); window.location='role/admin.jsp';</script>");
+		out.println("<script>alert('" + alertMessage + "'); window.location='role/aCatAndDog.jsp';</script>");
 		out.flush();
 
 	}

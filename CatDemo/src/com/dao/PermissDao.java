@@ -12,8 +12,6 @@ import com.database.JDBCDriver;
 import com.entities.Permiss;
 import com.managers.PermissManager;
 
-
-
 public class PermissDao {
 	private Connection conn;
 

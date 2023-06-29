@@ -131,9 +131,9 @@ function create_date(petId, cardImgEl, petName, breed, age) {
 
 	textBoxEl.setAttribute("class", "text__box");
 	liEl0.append(petId);
-	liEl1.append(petName);
-	liEl2.append(breed);
-	liEl3.append(age);
+	liEl1.append("寵物名稱 :"+petName);
+	liEl2.append("寵物品種 :"+breed);
+	liEl3.append("寵物年齡 : "+age);
 
 	liEl0.setAttribute("style", "display:none");
 

@@ -48,7 +48,7 @@ function contBox(i) {
 contBox(0);
 
 /********************************/
-/*            通用ajax           */
+/*             通用              */
 /********************************/
 /* 通用ajax 傳入 url 跟要使用的function */
 
@@ -90,6 +90,18 @@ function get_deleteDate() {
 	}
 }
 
+/* update-form 的input初始化 */
+function resetFormValues() {
+	const inputs = document.querySelectorAll(".update-form input");
+
+	inputs.forEach(input => {
+		input.value = "";
+	});
+
+}
+
+/* 正則表示式 0~N 的數字*/
+const pattern = /^\d{0,n}$/;
 /********************************/
 /*             會員介面            */
 /********************************/
@@ -104,11 +116,9 @@ const updateUserIdBtn = document.querySelector("#updateUserId-btn");
 updateUserIdBtn.addEventListener("click", function(e) {
 	e.preventDefault();
 
-	console.log(updateUserNo.value);
-
 	let url = "../admin-update-user?updateUserNo=" + updateUserNo.value;
-
 	loadData(url, get_updateDate);
+
 })
 
 /* 刪除會員的 查詢編號按鈕 */
@@ -122,27 +132,34 @@ deleteUserIdBtn.addEventListener("click", function() {
 	let url = "../delete-member?deleteUserNo=" + deleteUserNo.value;
 	loadData(url, get_deleteDate);
 })
-
+// update form 的select
+const updateGender = document.querySelector("#updateGender");
 /* 查詢會員後的動作 將值填入到form 以便管理者更新 */
 function get_updateDate() {
 	if (XHR.readyState == 4) {
 		if (XHR.status == 200) {
 			let response = JSON.parse(XHR.responseText);
+			if (Object.keys(response).length === 0) {
+				alert("查無此會員");
+				resetFormValues();
+				updateGender.selectedIndex = 0;
+			}
+			else {
+				/* 解構 */
+				for (let [key, value] of Object.entries(response)) {
+					// 找到input  ID名稱為 update + key開頭大寫 外加其他小寫
+					const inputEl = document.getElementById("update" + key.charAt(0).toUpperCase() + key.slice(1));
 
-			/* 解構 */
-			for (let [key, value] of Object.entries(response)) {
-				// 找到input  ID名稱為 update + key開頭大寫 外加其他小寫
-				const inputEl = document.getElementById("update" + key.charAt(0).toUpperCase() + key.slice(1));
-
-				// 當有找到所屬input　就會進入if
-				if (inputEl) {
-					// 前兩個 if　判斷select的值
-					if (value === "男") {
-						inputEl.value = 1;
-					} else if (value === "女") {
-						inputEl.value = 2;
-					} else {
-						inputEl.value = value;
+					// 當有找到所屬input　就會進入if
+					if (inputEl) {
+						// 前兩個 if　判斷select的值
+						if (value === "男") {
+							inputEl.value = 1;
+						} else if (value === "女") {
+							inputEl.value = 2;
+						} else {
+							inputEl.value = value;
+						}
 					}
 				}
 			}
@@ -156,15 +173,17 @@ function get_updateDate() {
 /* 顯示 updata 寵物介面的圖 */
 function updataPetImage(event) {
 	const form = document.querySelector("#formUpdateImg");
-	const images = document.getElementById("updateImage");
-	const number = images.files.length;
+	const images = document.getElementById("updatePhotos");
+	const files = event.target.files;
 
 	form.innerHTML = "";
 
-	for (i = 0; i < number; i++) {
-		const file = event.target.files[i];
-		const urls = URL.createObjectURL(file);
-		form.innerHTML += '<img src="' + urls + '" >';
+	for (i = 0; i < files.length; i++) {
+		const file = files[i];
+		const url = URL.createObjectURL(file);
+		const img = document.createElement("img");
+		img.src = url;
+		form.appendChild(img);
 	}
 }
 
@@ -182,29 +201,46 @@ updatePetIdBtn.addEventListener("click", function(e) {
 	loadData(url, get_petDate);
 })
 
+
+// update form 的textarea & image
+const updateQuest = document.querySelector("#updateQuest");
+const photosImg = document.querySelector("#formUpdateImg img");
+
 function get_petDate() {
 	if (XHR.readyState == 4) {
 		if (XHR.status == 200) {
 			let response = JSON.parse(XHR.responseText);
-			const photosImg = document.querySelector("#formUpdateImg img");
-			/* 解構 */
-			for (let [key, value] of Object.entries(response)) {
-				console.log(key);
-				// 找到input  ID名稱為 update + key開頭大寫 外加其他小寫
-				const inputEl = document.getElementById("update" + key.charAt(0).toUpperCase() + key.slice(1));
-				console.log(inputEl);
-				// 當有找到所屬input　就會進入if
-				if (inputEl) {
-					if (key.includes("photos")) {
-						photosImg.src = "../" + value;
-					} else {
-						inputEl.value = value;
+
+
+			if (Object.keys(response).length === 0) {
+				alert("查無此寵物");
+				resetFormValues();
+
+				updateQuest.value = "";
+				photosImg.src = "";
+			}
+			else {
+				/* 解構 */
+				for (let [key, value] of Object.entries(response)) {
+					
+					// 找到input  ID名稱為 update + key開頭大寫 外加其他小寫
+					const inputEl = document.getElementById("update" + key.charAt(0).toUpperCase() + key.slice(1));
+					
+					// 當有找到所屬input　就會進入if
+					if (inputEl) {
+						if (key.includes("photos")) {
+							photosImg.src = "../" + value;
+						} else {
+							inputEl.value = value;
+						}
 					}
 				}
 			}
 		}
 	}
 }
+
+
 
 /* 刪除寵物的 查詢編號按鈕 */
 const deletePetIdBtn = document.querySelector("#deletePetId-btn");
@@ -226,6 +262,9 @@ deletePetIdBtn.addEventListener("click", function() {
 const updatePublishNo = document.querySelector("#updatePublishId");
 const updatePublishIdBtn = document.querySelector("#updatePublishId-btn");
 
+// 更新form的 input
+const updatePublishUserId = document.querySelector("#updatePublishUserId");
+const updatePublishPetId = document.querySelector("#updatePublishPetId");
 updatePublishIdBtn.addEventListener("click", function(e) {
 	e.preventDefault();
 
@@ -241,12 +280,19 @@ function get_publishDate() {
 		if (XHR.status == 200) {
 			let response = JSON.parse(XHR.responseText);
 
-			for (let [key, value] of Object.entries(response)) {
+			if (Object.keys(response).length === 0) {
+				alert("查無此刊登");
+				updatePublishUserId.value = "";
+				updatePublishPetId.value = "";
+			}
+			else {
+				for (let [key, value] of Object.entries(response)) {
 
-				const inputEl = document.getElementById("updatePublish" + key.charAt(0).toUpperCase() + key.slice(1));
+					const inputEl = document.getElementById("updatePublish" + key.charAt(0).toUpperCase() + key.slice(1));
 
-				if (inputEl) {
-					inputEl.value = value;
+					if (inputEl) {
+						inputEl.value = value;
+					}
 				}
 			}
 		}
@@ -289,7 +335,7 @@ function get_adoptionDate() {
 				updateAdoptionNo.value = "";
 				updateAdoptionInputEl.value = "";
 			} else {
-				
+
 				updateAdoptionInputEl.value = str;
 			}
 
@@ -325,9 +371,9 @@ updatePermissUserIBtn.addEventListener("click", function(e) {
 
 function get_PermissDate() {
 	if (XHR.readyState == 4) {
-		if (XHR.status == 200) { 
+		if (XHR.status == 200) {
 			let str = XHR.responseText;
-			
+
 			if (str === 'false') {
 				alert("查無此會員 或 此會員沒有任何權限");
 				updatePermissUserNo.value = "";
@@ -349,3 +395,26 @@ deletePermissIdBtn.addEventListener("click", function() {
 
 	loadData(url, get_deleteDate);
 })
+
+/********************************/
+/*            顯示更新表單          */
+/********************************/
+/*
+const formBtns = document.querySelectorAll(".update-btn");
+const updateForms = document.querySelectorAll(".update-form");
+
+formBtns.forEach((btn, i) => {
+
+	btn.addEventListener("click", function() {
+		updateForms[i].classList.add("form-open");
+	})
+})
+*/
+/********************************/
+/*           禁用Enter           */
+/********************************/
+document.addEventListener("keydown", function(event) {
+	if (event.key === "Enter") {
+		event.preventDefault();  // 阻止預設行為
+	}
+});

@@ -90,7 +90,7 @@ public class UpdateAdoption extends HttpServlet {
 		}
 		if (adminUrl != null) {
 			String alertMessage = isSuccess ? "預約更新成功" : "預約更新失敗";
-			out.println("<script>alert('" + alertMessage + "'); window.location='role/admin.jsp';</script>");
+			out.println("<script>alert('" + alertMessage + "'); window.location='role/aCatAndDog.jsp';</script>");
 			out.flush();
 		} else {
 

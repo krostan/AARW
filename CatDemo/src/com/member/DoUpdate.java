@@ -73,11 +73,11 @@ public class DoUpdate extends HttpServlet {
 		/***************/
 		if (adminUrl != null) {
 			String alertMessage = isSuccess ? "會員更新成功" : "會員更新失敗";
-			out.println("<script>alert('" + alertMessage + "'); window.location='role/admin.jsp';</script>");
+			out.println("<script>alert('" + alertMessage + "'); window.location='role/aCatAndDog.jsp';</script>");
 			out.flush();
 		} else {
-			String message = isSuccess ? "更新成功" : "更新失敗";
-			session.setAttribute("message", message);
+//			String message = isSuccess ? "更新成功" : "更新失敗";
+//			session.setAttribute("message", message);
 			response.sendRedirect(isSuccess ? "member" : "search");
 		}
 

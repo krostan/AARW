@@ -171,6 +171,7 @@ menuBox.addEventListener("click", function() {
 /* 選取後傳送到後端 */
 const sortItem = document.querySelectorAll(".sort-item");
 const menuHeader = document.querySelector(".menu-header");
+
 sortItem.forEach((item) => {
 	item.addEventListener("click", function() {
 		// 取得 button上的字
@@ -188,6 +189,7 @@ let sortData;
 // 監視 內容變化 或是 class變化
 const observer = new MutationObserver(function(mutationsList) {
 	for (let mutation of mutationsList) {
+		// 子節點 或 文字內容 發生變化 觸發
 		if (mutation.type === "childList" || mutation.type === "characterData") {
 			sortData = menuHeader.textContent;
 			getSort();
@@ -260,7 +262,6 @@ const openWin = function(i) {
 	document.body.style.position = "fixed";
 	/* 設定到目前高度 */
 	document.body.style.top = -scrollPosition + "px";
-	console.log(scrollPosition);
 };
 
 /* 將彈出視窗縮回 */

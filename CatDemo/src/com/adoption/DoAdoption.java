@@ -44,6 +44,7 @@ public class DoAdoption extends HttpServlet {
 
 		int userId = 0;
 		int petId = 0;
+		String errorMessage = "";
 		boolean isSuccess = false;
 		// 得到當前時間
 		Date date = new Date();
@@ -57,11 +58,15 @@ public class DoAdoption extends HttpServlet {
 		String adminUrl = (String) request.getAttribute("adminUrl");
 		// 判斷是否從管理介面來的
 		if (adminUrl != null) {
-			String userStr = request.getParameter("userid");
-			userId = Integer.valueOf(userStr);
-
-			String petStr = request.getParameter("petid");
-			petId = Integer.valueOf(petStr);
+			try {
+				String userStr = request.getParameter("userid");
+				String petStr = request.getParameter("petid");
+				userId = Integer.valueOf(userStr);
+				petId = Integer.valueOf(petStr);
+			} catch (NumberFormatException e) {
+				System.out.println("不是數字");
+				errorMessage = "請輸入數字";
+			}
 
 		} else {
 			// 取得目前登入的會員ID
@@ -93,10 +98,13 @@ public class DoAdoption extends HttpServlet {
 		adoption = AdoptionManager.getInstance().findByMemberPetId(userId, petId);
 
 		if ((adoption == null) && isAdoption) {
-			isSuccess = AdoptionManager.getInstance().save(date, adoptionResult, recordDate, petId, userId);
+			if(errorMessage.equals("")) {
+				isSuccess = AdoptionManager.getInstance().save(date, adoptionResult, recordDate, petId, userId);				
+			}
+			
 			if (adminUrl != null) {
 				String alertMessage = isSuccess ? "預約成功" : "預約失敗";
-				out.println("<script>alert('" + alertMessage + "'); window.location='role/admin.jsp';</script>");
+				out.println("<script>alert('" + alertMessage + "'); window.location='role/aCatAndDog.jsp';</script>");
 				out.flush();
 			}
 		}

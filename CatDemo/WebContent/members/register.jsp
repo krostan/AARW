@@ -115,7 +115,7 @@ pageEncoding="UTF-8"%>
         name="email"
         onchange="checkEmail();"
         placeholder="cat@exaple.com"
-       	pattern="^[\w\.-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)*\.[a-zA-Z]{2,}$"
+       	pattern="^[A-Za-z0-9-_\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+$"
         required 
       />
       <h1 class="check-date" id="checkEmail"></h1>
@@ -172,7 +172,7 @@ pageEncoding="UTF-8"%>
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
     ></script>
     
-    <!-- 驗證使用者名稱 -->
+    <!-- 驗證使用者資料 -->
     <script defer src="../js/check.js"></script>
     <!-- 重置驗證圖片 -->
     <script defer src="../js/refresh.js"></script>

@@ -290,6 +290,22 @@ input, select {
 	width: 56%;
 }
 
+/**********************************/
+/*             隱藏更新表單           */
+/**********************************/
+/*.update-form {
+	opacity: 0;
+	pointer-events: none;
+	visibility: hidden;
+	transition: all 0.3s ease-out;
+}
+
+.update-form.form-open {
+	opacity: 1;
+	pointer-events: auto;
+	visibility: visible;
+}
+*/
 /*****************/
 /* 自定義input file*/
 /*****************/

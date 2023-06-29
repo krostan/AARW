@@ -168,18 +168,6 @@ public class Page extends HttpServlet {
 
 				out.print("<ul class='card_content-box'>");
 
-				if (path.equals("/CatDemo/pets")) {
-					// 日期轉字串
-					LocalDateTime publishDate = publish.getPublishDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-					DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-					String dateString = format.format(publishDate);
-
-					out.print("<li class='card_content'><div class='content_item'>");
-					out.print("<div class=''>刊登時間:</div>");
-					out.print("<div class='item_text'>" + dateString + "</div>");
-					out.print("</div></li>");
-				}
-
 				out.print("<li class='card_content'><div class='content_item'>");
 				out.print("<div class=''>寵物品種:</div>");
 				out.print("<div class='item_text'>" + isNull(breed) + "</div>");
@@ -199,6 +187,18 @@ public class Page extends HttpServlet {
 				out.print("<div class=''>年齡:</div>");
 				out.print("<div class='item_text'>" + isNull(age) + "</div>");
 				out.print("</div></li>");
+				
+				if (path.equals("/CatDemo/pets")) {
+					// 日期轉字串
+					LocalDateTime publishDate = publish.getPublishDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+					DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+					String dateString = format.format(publishDate);
+
+					out.print("<li class='card_content'><div class='content_item'>");
+					out.print("<div class=''>刊登時間:</div>");
+					out.print("<div class='item_text'>" + dateString + "</div>");
+					out.print("</div></li>");
+				}
 
 				if (userId == pet.get(i).getMember().getUserId() && !(path.equals("/CatDemo/search-publish"))) {
 					out.print("<li class='card_content'><div class='content_item'>");

@@ -44,7 +44,7 @@ public class CheckPhone extends HttpServlet {
 
 		if (phoneDate != null) {
 			out.print("此電話已註冊");
-		} else if (len < 8 || len > 12) {
+		} else if (len !=10) {
 			out.print("電話長度不正確");
 		} else {
 			out.print("");

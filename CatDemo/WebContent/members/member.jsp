@@ -89,9 +89,9 @@
 							class="side-nav__icon"></ion-icon> <span>會員資料</span>
 				</a></li>
 
-				<li class="side-nav__item"><a href="members/resetpwd.jsp"
+				<li class="side-nav__item"><a href="members/changepwd.jsp"
 					class="side-nav__link"> <ion-icon name="key-outline"
-							class="side-nav__icon"></ion-icon> <span>重設密碼</span>
+							class="side-nav__icon"></ion-icon> <span>變更密碼</span>
 				</a></li>
 
 				<li class="side-nav__item"><a href="member"
@@ -123,12 +123,11 @@
 					// 得到使用者的權限
 					Permiss permiss = null;
 					permiss = PermissManager.getInstance().findByUserId(userId);
-					System.out.println(permiss != null);
-					System.out.println(Objects.equals(permiss.getRole(), "系統管理者"));
+					String roleStr = "系統管理者";
 				%>
 				
-				<% if(permiss != null && (Objects.equals(permiss.getRole(), "系統管理者"))){ %>
-					<li class="side-nav__item"><a href="role/admin.jsp"
+				<% if(permiss != null && (Objects.equals(permiss.getRole(), roleStr))){ %>
+					<li class="side-nav__item"><a href="role/aCatAndDog.jsp"
 						class="side-nav__link"> <ion-icon name="leaf-outline" class="side-nav__icon"></ion-icon>
 						<span>系統管理者模式</span>
 					</a></li>

@@ -20,40 +20,50 @@ import com.managers.PublishManager;
 @WebServlet("/admin-search-publish")
 public class AdminSearchPublish extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AdminSearchPublish() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public AdminSearchPublish() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		System.out.println("admin-search-publish");
 
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
-		
-		String publishStr = request.getParameter("updatePublishNo");
-		int publishId = Integer.parseInt(publishStr);
-		
-		Publish publish = PublishManager.getInstance().findById(publishId);
-		
-		int userId = publish.getMember().getUserId();
-		int petId = publish.getPet().getPetId();
-		
-		String userStr = String.valueOf(userId);
-		String petStr = String.valueOf(petId);
-		
 		Map<String, String> map = new HashMap<>();
 
-		map.put("userId", userStr);
-		map.put("petId", petStr);
-		
+		String publishStr = request.getParameter("updatePublishNo");
+
+		int publishId = 0;
+
+		try {
+			publishId = Integer.parseInt(publishStr);
+		} catch (NumberFormatException e) {
+			System.out.println("不是數字");
+		}
+
+		Publish publish = PublishManager.getInstance().findById(publishId);
+
+		if (publish != null) {
+			int userId = publish.getMember().getUserId();
+			int petId = publish.getPet().getPetId();
+
+			String userStr = String.valueOf(userId);
+			String petStr = String.valueOf(petId);
+
+			map.put("userId", userStr);
+			map.put("petId", petStr);
+		}
+
 		Gson gson = new Gson();
 		String json = gson.toJson(map);
 
@@ -63,9 +73,11 @@ public class AdminSearchPublish extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

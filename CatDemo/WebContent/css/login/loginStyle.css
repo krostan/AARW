@@ -276,9 +276,18 @@ input {
     padding: 1.6rem 2.4rem;
 }
 
-.get_pwd{
-	margin: 4rem 2rem;
-    text-align: center;
+.message_forget-h1{
+	position: absolute;
+    margin-top: 1.4rem;
+    color: rgb(255,0,43);
+    left: 10%;
 }
 
-
+.forget_btn-box{
+	display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2.4rem;
+    margin-top: 6rem;
+    align-items: center;
+    justify-items: center;
+}

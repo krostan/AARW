@@ -51,7 +51,7 @@
 		%>
 		<!-- <h1 style="margin-top:1rem;color:rgb(255,0,43);"> ${ message }</h1> -->
 		
-		<a href="signin.jsp" class="pwd_link">忘記密碼?</a>
+		<a href="forgetPassword.jsp" class="pwd_link">忘記密碼?</a>
 
 		<button class="btn-login">登入</button>
 

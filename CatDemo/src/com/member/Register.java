@@ -78,7 +78,7 @@ public class Register extends HttpServlet {
 		URL urlPath = new URL(previousUrl);
 		String path = urlPath.getPath();
 
-		boolean isAdmin = path.equals("/CatDemo/role/admin.jsp");
+		boolean isAdmin = path.equals("/CatDemo/role/aCatAndDog.jsp");
 		/*******************************************************/
 
 		boolean isSuccess;
@@ -88,11 +88,12 @@ public class Register extends HttpServlet {
 			session.setAttribute("message", "驗證錯誤");
 			response.sendRedirect("members/register.jsp");
 		} else {
+			
 			isSuccess = MemberManager.getInstance().save(username, password, name, phone, birthday, email, gender,
 					address);
 			if (isAdmin) {
 				String alertMessage = isSuccess ? "會員註冊成功" : "會員註冊失敗";
-				out.println("<script>alert('" + alertMessage + "'); window.location='role/admin.jsp';</script>");
+				out.println("<script>alert('" + alertMessage + "'); window.location='role/aCatAndDog.jsp';</script>");
 				out.flush();
 			} else {
 				if (isSuccess) {

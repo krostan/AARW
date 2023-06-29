@@ -77,11 +77,15 @@ public class MemberManager {
 		return dao.updateMember(userId, name, phone, birthday, email, gender, address);
 	}
 
-	// 重設密碼
+	// 更改密碼
 	public boolean updatePwd(int userId, String oldPwd, String newPwd) {
 		return dao.updatePwd(userId, oldPwd, newPwd);
 	}
-
+	
+	// 重置密碼
+	public boolean updatePwd(int userId, String newPwd) {
+		return dao.updatePwd(userId, newPwd);
+	}
 	// 搜尋會員的全部寵物
 	public List<Pet> getPetsByMemberId(int userId) {
 		return dao.getPetsByMemberId(userId);
